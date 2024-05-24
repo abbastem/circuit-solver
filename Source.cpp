@@ -6,6 +6,10 @@
 
 Source Source::addSource(Source S) {
     Source A;
+    if (S.R < 0) {
+        std::cout << "Error !!\n>The value of the resistance 'R' must always be positive.\n";
+        return A;
+    }
     if (S.I_Source == 0) {
         A.R = S.R;
         A.V_Source = S.V_Source;
@@ -60,8 +64,9 @@ Source Source::operator*(Source &obj) const {
 }
 
 void Source::Print() const {
-    printf("R = %4.2f Ohm \nV = %4.2f Volt \nI = %4.2f Amber \n"
-           "VR = %4.2f Volt \nVI = %4.2f Volt \nII = %4.2f Amber \n", R, V_Source, I_Source, VR, VI, II);
+    printf("Resistor 'R' = %4.2f Ohm \nVoltage 'V' = %4.2f Volt \nCurrent 'I' = %4.2f Amber \n"
+           "The voltage across the resistor 'VR' = %4.2f Volt \nThe voltage of the current source 'VI' = %4.2f Volt \n"
+           "The current flowing in the branch 'II' = %4.2f Amber \n", R, V_Source, I_Source, VR, VI, II);
 }
 
 void Source::Delete() {
@@ -71,6 +76,12 @@ void Source::Delete() {
     VR = 0;
     VI = 0;
     II = 0;
+}
+
+bool Source::check(Source S) {
+    if (S.R == 0 && S.V_Source == 0 && S.V_Source == 0)
+        return true;
+    return false;
 }
 
 std::istream &operator >> (std::istream &input, Source &obj) {

@@ -22,6 +22,8 @@ public:
     void Print() const;
 
     void Delete();
+
+    static bool check(Source S);
 };
 std::istream &operator >> (std::istream &intput, Source &obj);
 
